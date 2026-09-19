@@ -82,7 +82,7 @@ export default function FooterLinks({ categories, quickLinks, whatsapp, instagra
       {/* Connect */}
       <div className="sm:col-span-3">
         <AccordionSection id="connect" title="Connect" openSection={openSection} onToggle={toggle}>
-          <div className="flex gap-2 mb-5">
+          {/* <div className="flex gap-2 mb-5">
             
              <a href={`https://wa.me/${whatsapp}`}
               target="_blank"
@@ -104,16 +104,16 @@ export default function FooterLinks({ categories, quickLinks, whatsapp, instagra
             >
               <Instagram size={16} strokeWidth={1.75} />
             </a>
-          </div>
+          </div> */}
 
           <div className="text-xs space-y-3 leading-relaxed" style={{ color: BLACK_SOFT }}>
             <p>
               <span className="font-semibold" style={{ color: BLACK }}>WhatsApp</span><br />
-              +91 80561 14537
+              +91 xxxxxxxxxx
             </p>
             <p>
               <span className="font-semibold" style={{ color: BLACK }}>Email</span><br />
-              tirupurclothinghub2025@gmail.com
+              xxxxxxxxxxxxx
             </p>
           </div>
         </AccordionSection>

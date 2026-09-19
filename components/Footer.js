@@ -20,9 +20,9 @@ async function getCategories() {
 }
 
 export default async function Footer() {
-  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP || '918056114537';
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP || '91xxxxxxxx';
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM ||
-    'https://www.instagram.com/tirupur_clothing_hub?utm_source=qr&igsi=ZTk1em9obGZtajMx';
+    'https://www.instagram.com/xxxxxxxxx';
   const categories = await getCategories();
 
   const quickLinks = [

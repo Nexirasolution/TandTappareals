@@ -20,9 +20,9 @@ async function getCategories() {
 }
 
 export default async function Footer() {
-  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP || '91xxxxxxxx';
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP || '919600386661';
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM ||
-    'https://www.instagram.com/xxxxxxxxx';
+    'https://www.instagram.com/tiruppur_apparels?utm_source=qr&stkn=MXB2ZjhicjJmbWluMA==';
   const categories = await getCategories();
 
   const quickLinks = [
@@ -47,8 +47,8 @@ export default async function Footer() {
 
           <p className="flex items-start gap-1.5 text-xs leading-relaxed" style={{ color: BLACK_SOFT }}>
             <MapPin size={13} className="shrink-0 mt-0.5" style={{ color: RED_ACCENT }} />
-            xxxxxx,<br />
-            xxxxx
+            4th Street, PN Rd, Thirumalai Nagar, S V Nagar,<br />
+            Tiruppur, Tamil Nadu 641602
           </p>
 
           <p className="inline-flex items-center gap-1.5 mt-4 text-[11px] font-normal tracking-wide" style={{ color: BLACK_SOFT }}>
@@ -68,8 +68,7 @@ export default async function Footer() {
             © {new Date().getFullYear()} T&T Apparels. All rights reserved.
           </p>
 
-          
-          <a  href="https://www.nexirasolution.in"
+          <a href="https://www.nexirasolution.in"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-1.5 text-[11px] transition-opacity hover:opacity-75"

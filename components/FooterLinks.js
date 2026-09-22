@@ -43,6 +43,14 @@ function AccordionSection({ id, title, openSection, onToggle, children }) {
   );
 }
 
+function formatIndianPhone(raw) {
+  // Turns "919600386661" into "+91 96003 86661"
+  const digits = String(raw).replace(/\D/g, '');
+  const local = digits.length > 10 ? digits.slice(-10) : digits;
+  const cc = digits.length > 10 ? digits.slice(0, digits.length - 10) : '91';
+  return `+${cc} ${local.slice(0, 5)} ${local.slice(5)}`;
+}
+
 export default function FooterLinks({ categories, quickLinks, whatsapp, instagram }) {
   const [openSection, setOpenSection] = useState(null);
   const toggle = (id) => setOpenSection((prev) => (prev === id ? null : id));
@@ -82,9 +90,8 @@ export default function FooterLinks({ categories, quickLinks, whatsapp, instagra
       {/* Connect */}
       <div className="sm:col-span-3">
         <AccordionSection id="connect" title="Connect" openSection={openSection} onToggle={toggle}>
-          {/* <div className="flex gap-2 mb-5">
-            
-             <a href={`https://wa.me/${whatsapp}`}
+          <div className="flex gap-2 mb-5">
+            <a href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
@@ -94,8 +101,7 @@ export default function FooterLinks({ categories, quickLinks, whatsapp, instagra
               <WhatsAppIcon size={16} />
             </a>
 
-            
-             <a href={instagram}
+            <a href={instagram}
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -104,16 +110,12 @@ export default function FooterLinks({ categories, quickLinks, whatsapp, instagra
             >
               <Instagram size={16} strokeWidth={1.75} />
             </a>
-          </div> */}
+          </div>
 
           <div className="text-xs space-y-3 leading-relaxed" style={{ color: BLACK_SOFT }}>
             <p>
               <span className="font-semibold" style={{ color: BLACK }}>WhatsApp</span><br />
-              +91 xxxxxxxxxx
-            </p>
-            <p>
-              <span className="font-semibold" style={{ color: BLACK }}>Email</span><br />
-              xxxxxxxxxxxxx
+              {formatIndianPhone(whatsapp)}
             </p>
           </div>
         </AccordionSection>

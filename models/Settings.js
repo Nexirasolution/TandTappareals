@@ -13,16 +13,21 @@ const SettingsSchema = new mongoose.Schema(
     // piece (garment/unit) and a price per kg. Total order weight is
     // computed as (total piece count across the cart) * weightPerPiece,
     // then charged at pricePerKg, rounded up to the next whole kg.
-    // `shippingFee` is kept only so existing documents aren't broken by
-    // the schema change; it is no longer read by the shipping calculator.
-    shippingFee: { type: Number, default: 49 },
-    weightPerPiece: { type: Number, default: 250 }, // grams, per single piece
-    pricePerKg: { type: Number, default: 60 }, // ₹ charged per kg (rounded up)
+    //
+    // DEPRECATED: shippingFee is no longer read anywhere in the codebase
+    // (see lib/calculateShipping.js, which is the single source of truth
+    // for both the checkout preview and order creation). It is kept here,
+    // still populated with its old value in existing documents, purely so
+    // an `unset` migration can be run deliberately rather than silently
+    // dropping data. Do not reintroduce reads of this field.
+    shippingFee: { type: Number },
+    weightPerPiece: { type: Number, default: 0 }, // grams, per single piece
+    pricePerKg: { type: Number, default: 0 }, // ₹ charged per kg (rounded up)
 
     // Flat fallback used whenever weight-based shipping can't be computed —
     // i.e. weightPerPiece or pricePerKg is left at 0/unset. Keeps shipping
     // from silently coming out as ₹0 if the admin hasn't configured weight yet.
-    defaultShippingCharge: { type: Number, default: 49 },
+    defaultShippingCharge: { type: Number, default: 50 },
 
     freeShippingAbove: { type: Number, default: 999 }, // order subtotal (₹) above which shipping is free, regardless of weight
     seoTitle: { type: String, default: 'Lakshmibala Clothing Store - Women Kurtis, Innerwear & More' },

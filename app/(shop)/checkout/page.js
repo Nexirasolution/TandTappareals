@@ -194,7 +194,7 @@ export default function CheckoutPage() {
           key: orderData.keyId,
           amount: orderData.order.amount,
           currency: 'INR',
-          name: 'Mohith Trends',
+          name: 'T and T Appareals',
           order_id: orderData.order.id,
           prefill: { name: form.name, contact: form.phone, email: form.email },
           theme: { color: '#C8102E' },

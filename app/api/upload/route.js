@@ -1,10 +1,14 @@
-import { v2 as cloudinary } from 'cloudinary';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { NextResponse } from 'next/server';
+import { randomUUID } from 'crypto';
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+const r2 = new S3Client({
+  region: 'auto',
+  endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: process.env.R2_ACCESS_KEY_ID,
+    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+  },
 });
 
 export async function POST(req) {
@@ -16,23 +20,26 @@ export async function POST(req) {
 
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  const uploadResult = await new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      {
-        folder,
-        resource_type: 'auto', // handles images, videos, pdfs, etc.
-        // public_id: randomUUID(), // optional: omit to let Cloudinary generate one
-      },
-      (error, result) => {
-        if (error) reject(error);
-        else resolve(result);
-      }
-    );
-    uploadStream.end(buffer);
-  });
+  // Build a unique key, preserving the original extension if there is one
+  const ext = file.name?.includes('.') ? file.name.split('.').pop() : '';
+  const key = `${folder}/${randomUUID()}${ext ? `.${ext}` : ''}`;
+
+  await r2.send(
+    new PutObjectCommand({
+      Bucket: process.env.R2_BUCKET_NAME,
+      Key: key,
+      Body: buffer,
+      ContentType: file.type || 'application/octet-stream',
+    })
+  );
+
+  // R2_PUBLIC_URL is your public bucket domain (custom domain or the
+  // r2.dev dev subdomain), with no trailing slash, e.g.
+  // https://assets.example.com  or  https://pub-xxxx.r2.dev
+  const url = `${process.env.R2_PUBLIC_URL}/${key}`;
 
   return NextResponse.json({
-    url: uploadResult.secure_url,
-    publicId: uploadResult.public_id,
+    url,
+    publicId: key,
   });
 }

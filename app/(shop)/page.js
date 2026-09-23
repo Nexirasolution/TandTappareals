@@ -147,23 +147,10 @@ export default async function HomePage() {
   </section>
 )}
 
-      {/* Intro / Featured collection — centered copy, up to 6 New Arrivals, CTA */}
-      <section className="max-w-6xl mx-auto px-4 pt-16 pb-16 text-center">
-        {/* <h2
-          className="text-2xl sm:text-3xl font-bold tracking-[1px]"
-          style={{ color: COFFEE, fontFamily: FONT_SANS }}
-        >
-          Fall in Love with Our Block-Printed Clothing
-        </h2>
-
-        <p className="mt-5 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed font-light" style={{ color: COFFEE_FAINT, fontFamily: FONT_SANS }}>
-          Celebrate femininity and grace. Think intricate designs, vibrant colors, and a touch of
-          cultural elegance. Whether you&rsquo;re heading out for a casual day or dressing up for a
-          special occasion, these pieces are your new best friend.
-        </p> */}
-
+      {/* Featured collection — up to 6 New Arrivals, CTA */}
+      <section className="max-w-6xl mx-auto px-4 pt-6 pb-16 text-center">
         <h3
-          className="mt-14 text-lg sm:text-xl font-bold tracking-[3px] uppercase"
+          className="text-lg sm:text-xl font-bold tracking-[3px] uppercase"
           style={{ color: COFFEE, fontFamily: FONT_SANS }}
         >
           Featured Collection

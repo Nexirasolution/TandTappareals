@@ -39,7 +39,7 @@ export default async function Footer() {
         {/* Brand column */}
         <div className="sm:col-span-4">
           <h3 className={`${display.className} text-2xl leading-tight`} style={{ color: BLACK, fontWeight: 400 }}>
-            T&T Appareals
+            T&T Apparels
           </h3>
           <p className="text-[11px] font-normal tracking-wide mb-4" style={{ color: RED_ACCENT }}>
             Wholesale &amp; Retail
@@ -47,7 +47,7 @@ export default async function Footer() {
 
           <p className="flex items-start gap-1.5 text-xs leading-relaxed" style={{ color: BLACK_SOFT }}>
             <MapPin size={13} className="shrink-0 mt-0.5" style={{ color: RED_ACCENT }} />
-            4th Street, PN Rd, Thirumalai Nagar, S V Nagar,<br />
+            4th Street, PN Rd, Thirumalai Nagar,<br />
             Tiruppur, Tamil Nadu 641602
           </p>
 
